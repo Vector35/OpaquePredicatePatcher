@@ -40,8 +40,6 @@ def patch_opaque_inner(bv, status):
             continue
         # Get the possible_values of the condition result
         condition_value = i.condition.possible_values
-        if i.address == 0x40051e:
-            log_info("Address: %x %s" % (i.address, str(condition_value)))
         # If the condition never changes then its safe to patch the branch
         if condition_value.type == RegisterValueType.ConstantValue:
             if condition_value.value == 0 and bv.is_never_branch_patch_available(i.address):
