@@ -28,12 +28,12 @@ from binaryninja.plugin import BackgroundTaskThread
 from binaryninja.enums import (MediumLevelILOperation, RegisterValueType)
 
 
-def patch_opaque_inner(bv, status):
+def patch_opaque_inner(bv, status=None):
     bv.update_analysis_and_wait()
     patch_locations = []
     for i in bv.mlil_instructions:
         # Allow the UI to cancel the action
-        if status.cancelled:
+        if status is not None and status.cancelled:
             break
 
         if i.operation != MediumLevelILOperation.MLIL_IF:
@@ -50,12 +50,12 @@ def patch_opaque_inner(bv, status):
     return patch_locations
 
 
-def patch_opaque(bv, status):
+def patch_opaque(bv, status=None):
     analysis_pass = 0
     while True:
         analysis_pass += 1
         patch_locations = patch_opaque_inner(bv, status)
-        if len(patch_locations) == 0 or analysis_pass == 10 or status.cancelled:
+        if len(patch_locations) == 0 or analysis_pass == 10 or (status is not None and status.cancelled):
             break
         for address, always in patch_locations:
             if always:
@@ -83,7 +83,7 @@ def patch_opaque_in_background(bv):
 def main():
     bv = BinaryViewType.get_view_of_file(sys.argv[1])
     if bv is None:
-        print "Couldn't open %s" % sys.argv[1]
+        print("Couldn't open %s" % sys.argv[1])
         return
 
     patch_opaque(bv)
