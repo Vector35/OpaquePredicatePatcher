@@ -2,10 +2,10 @@
 	"plugin": {
 		"pluginmetadataversion": 2,
 		"name": "OpaquePredicatePatcher",
-		"type": ["core" ],
+		"type": ["helper" ],
 		"api": ["python2", "python3"],
 		"description": "Automatically patch opaque predicates",
-		"longdescription": "This script will automatically remove conditional branches which have constant conditions. It can be run from the command line via `python -mOpaquePredicatePatcher.__main__` (if the BinaryNinja python library is in your path) or installed as a plugin in your user plugin directory. Useful for analyzing obfsucated malware. ![Before and After](opaque_predicate_elimination.gif 'Before and After')",
+		"longdescription": "This script will automatically remove conditional branches which have constant conditions. It can be run from the command line via `python -mOpaquePredicatePatcher.__main__` (if the BinaryNinja python library is in your path) or installed as a plugin in your user plugin directory. Read more about how this tool works on our blog: [Automated Opaque Predicate Removal](https://binary.ninja/2017/10/01/automated-opaque-predicate-removal.html)\n\n###Example\n\n![Before and After](opaque_predicate_elimination.gif =400x400 'Before and After')",
 		"license": {
 			"name": "MIT",
 			"text": "Copyright (c) 2017 Vecto 35 LLC\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
@@ -18,7 +18,7 @@
 		},
 		"dependencies": {
 		},
-		"version": "1.1 alpha",
+		"version": "1.1.1",
 		"author": "Vector 35 LLC",
 		"minimumbinaryninjaversion": 0
 	}
