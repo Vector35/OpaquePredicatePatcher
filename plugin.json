@@ -1,7 +1,7 @@
 {
 	"plugin": {
 		"pluginmetadataversion": 2,
-		"name": "OpaquePredicatePatcher",
+		"name": "Opaque Predicate Patcher",
 		"type": ["helper" ],
 		"api": ["python2", "python3"],
 		"description": "Automatically patch opaque predicates",
