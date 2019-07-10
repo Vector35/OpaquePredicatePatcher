@@ -1,2 +1,3 @@
-__init__.pyc
+*.pyc
 .DS_Store
+__pycache__
