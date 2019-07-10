@@ -1,5 +1,5 @@
 # OpaquePredicatePatcher (v1.0 alpha)
-Author: **Vector 35 LLC**
+Author: **Vector 35 Inc**
 
 _Automatically patch opaque predicates_
 
