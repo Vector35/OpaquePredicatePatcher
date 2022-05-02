@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (c) 2015-2017 Vector 35 Inc
+# Copyright (c) 2015-2022 Vector 35 Inc
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to
@@ -20,7 +20,6 @@
 # IN THE SOFTWARE.
 
 import sys
-
 from binaryninja.log import log_info
 from binaryninja.binaryview import BinaryViewType
 from binaryninja.plugin import PluginCommand
@@ -29,7 +28,6 @@ from binaryninja.enums import (MediumLevelILOperation, RegisterValueType)
 
 
 def patch_opaque_inner(bv, status=None):
-    bv.update_analysis_and_wait()
     patch_locations = []
     for i in bv.mlil_instructions:
         # Allow the UI to cancel the action
@@ -64,6 +62,7 @@ def patch_opaque(bv, status=None):
             else:
                 log_info("Patching instruction {} to always branch.".format(hex(address)))
                 bv.always_branch(address)
+        bv.update_analysis_and_wait()
 
 
 class PatchOpaqueInBackground(BackgroundTaskThread):
@@ -79,24 +78,4 @@ def patch_opaque_in_background(bv):
     background_task = PatchOpaqueInBackground(bv, "Patching opaque predicates")
     background_task.start()
 
-
-def main():
-    bv = BinaryViewType.get_view_of_file(sys.argv[1])
-    if bv is None:
-        print("Couldn't open %s" % sys.argv[1])
-        return
-
-    patch_opaque(bv)
-
-    dbname = sys.argv[1]
-    if not dbname.endswith(".bndb"):
-        dbname += ".bndb"
-
-    bv.create_database(dbname)
-
-
-if __name__ == "__main__":
-    main()
-else:
-    PluginCommand.register("Patch Opaque Predicates", "Find branches which are unnecessary and remove them",
-        patch_opaque_in_background)
+PluginCommand.register("Patch Opaque Predicates", "Find branches which are unnecessary and remove them", patch_opaque_in_background)
