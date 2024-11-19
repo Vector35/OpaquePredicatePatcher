@@ -5,7 +5,6 @@
         "helper"
     ],
     "api": [
-        "python2",
         "python3"
     ],
     "description": "Automatically patch opaque predicates",
@@ -25,7 +24,7 @@
         "Darwin": ""
     },
     "dependencies": {},
-    "version": "1.1.5",
+    "version": "1.1.6",
     "author": "Vector 35 Inc",
     "minimumbinaryninjaversion": 0
 }

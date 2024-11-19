@@ -40,10 +40,10 @@ def patch_opaque_inner(bv, status=None):
         condition_value = i.condition.possible_values
         # If the condition never changes then its safe to patch the branch
         if condition_value.type == RegisterValueType.ConstantValue:
-            if condition_value.value == 0 and bv.is_never_branch_patch_available(i.address):
-                patch_locations.append((i.address, True))
-            elif bv.is_always_branch_patch_available(i.address):
-                patch_locations.append((i.address, False))
+            if condition_value.value == 0 and bv.is_never_branch_patch_available(i.address, i.il_basic_block.arch):
+                patch_locations.append((i.address, True, i.il_basic_block.arch))
+            elif bv.is_always_branch_patch_available(i.address, i.il_basic_block.arch):
+                patch_locations.append((i.address, False, i.il_basic_block.arch))
 
     return patch_locations
 
@@ -55,13 +55,13 @@ def patch_opaque(bv, status=None):
         patch_locations = patch_opaque_inner(bv, status)
         if len(patch_locations) == 0 or analysis_pass == 10 or (status is not None and status.cancelled):
             break
-        for address, always in patch_locations:
+        for address, always, arch in patch_locations:
             if always:
                 log_info("Patching instruction {} to never branch.".format(hex(address)))
-                bv.never_branch(address)
+                bv.never_branch(address, arch)
             else:
                 log_info("Patching instruction {} to always branch.".format(hex(address)))
-                bv.always_branch(address)
+                bv.always_branch(address, arch)
         bv.update_analysis_and_wait()
 
 

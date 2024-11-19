@@ -1,4 +1,4 @@
-# Opaque Predicate Patcher (v1.1.5)
+# Opaque Predicate Patcher (v1.1.6)
 Author: **Vector 35 Inc**
 
 _Automatically patch opaque predicates_
