@@ -1,4 +1,4 @@
-# Opaque Predicate Patcher (v1.1.6)
+# Opaque Predicate Patcher
 Author: **Vector 35 Inc**
 
 _Automatically patch opaque predicates_
@@ -9,7 +9,7 @@ This script will automatically remove conditional branches which have constant c
 
 ### Example
 
-![Before and After](opaque_predicate_elimination.gif)
+![](https://raw.githubusercontent.com/Vector35/OpaquePredicatePatcher/refs/heads/master/opaque_predicate_elimination.gif)
 
 
 ## Installation Instructions
@@ -30,7 +30,7 @@ This script will automatically remove conditional branches which have constant c
 
 This plugin requires the following minimum version of Binary Ninja:
 
-* 0
+* 1904
 
 
 
